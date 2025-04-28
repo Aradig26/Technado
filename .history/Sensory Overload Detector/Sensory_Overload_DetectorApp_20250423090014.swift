@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct AuSenseApp: App {
+struct Sensory_Overload_DetectorApp: App {
     @StateObject private var sensorConnectionService = SensorConnectionService()
     
     var sharedModelContainer: ModelContainer = {

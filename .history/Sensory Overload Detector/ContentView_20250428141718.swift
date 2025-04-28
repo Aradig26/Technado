@@ -288,7 +288,7 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 if let currentSettings = settings.first {
-                    Section(header: Text("Sound Threshold"), footer: Text("The sound level (in decibls) which may contribute to sensory discomfrt. Normal conversation is around 60dB, and loud environments are 80dB+.")) {
+                    Section(header: Text("Sound Threshold"), footer: Text("The sound level (in decibels) which may contribute to sensory overload. Normal conversation is around 60dB, and loud environments are 80dB+.")) {
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
                                 Text("Current: \(Int(currentSettings.soundThreshold)) dB")
@@ -346,7 +346,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    Section(header: Text("Light Threshold"), footer: Text("The light level (in lux) which may contribute to sensory discomfort. Indoor lighting is typicaly 300-500 lux, and bright offices are around 1000 lux.")) {
+                    Section(header: Text("Light Threshold"), footer: Text("The light level (in lux) which may contribute to sensory overload. Indoor lighting is typically 300-500 lux, and bright offices are around 1000 lux.")) {
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
                                 Text("Current: \(Int(currentSettings.lightThreshold)) lux")
@@ -465,7 +465,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    Section(header: Text("Notifications"), footer: Text("When enabeld, youll receive alerts when the app detects a potential discomfort situation.")) {
+                    Section(header: Text("Notifications"), footer: Text("When enabeld, youll receive alerts when the app detects a potential sensory overload situation.")) {
                         Toggle("Enable Notifications", isOn: Binding(
                             get: { currentSettings.notificationsEnabled },
                             set: { 
