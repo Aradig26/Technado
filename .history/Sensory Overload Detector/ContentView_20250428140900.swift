@@ -18,6 +18,14 @@ struct ContentView: View {
     @State private var selectedTab = 0
     @State private var showingDeviceSheet = false
     @State private var isCalibrating = false
+    @State private var tempSoundThreshold: Double = 85.0
+    @State private var tempLightThreshold: Double = 1000.0
+    @State private var tempHeartRateThreshold: Double = 20.0
+    
+    // Helper function to format numbers without thousands separators
+    private func formatWithoutCommas(_ value: Double) -> String {
+        return "\(Int(value))"
+    }
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -48,8 +56,18 @@ struct ContentView: View {
                 let newSettings = UserSettings()
                 modelContext.insert(newSettings)
                 sensorService.updateSettings(newSettings)
+                // Initialize temp values
+                tempSoundThreshold = newSettings.soundThreshold
+                tempLightThreshold = newSettings.lightThreshold
+                tempHeartRateThreshold = newSettings.heartRateThreshold
             } else {
                 sensorService.updateSettings(settings[0])
+                // Initialize temp values from existing settings
+                if let currentSettings = settings.first {
+                    tempSoundThreshold = currentSettings.soundThreshold
+                    tempLightThreshold = currentSettings.lightThreshold
+                    tempHeartRateThreshold = currentSettings.heartRateThreshold
+                }
             }
         }
         .sheet(isPresented: $showingDeviceSheet) {
@@ -275,54 +293,184 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 if let currentSettings = settings.first {
-                    Section(header: Text("Thresholds")) {
-                        HStack {
-                            Image(systemName: "ear")
-                            Text("Sound Threshold")
-                            Spacer()
-                            Slider(value: Binding(
-                                get: { currentSettings.soundThreshold },
-                                set: { 
-                                    currentSettings.soundThreshold = $0
+                    Section(header: Text("Sound Threshold"), footer: Text("The sound level (in decibels) above which may contribute to sensory overload. Normal conversation is around 60dB, and loud environments are 80dB+.")) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack {
+                                Text("Current: \(formatWithoutCommas(currentSettings.soundThreshold)) dB")
+                                    .font(.headline)
+                                Spacer()
+                                
+                                if sensorService.lastReading != nil && sensorService.lastReading!.soundLevel > currentSettings.soundThreshold {
+                                    Label("Exceeded", systemImage: "exclamationmark.circle")
+                                        .foregroundColor(.red)
+                                        .font(.caption)
+                                }
+                            }
+                            
+                            HStack {
+                                Text("50 dB")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                                Text("100 dB")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Slider(
+                                value: $tempSoundThreshold,
+                                in: 50...100,
+                                step: 1
+                            ) {
+                                Text("Sound Threshold")
+                            } minimumValueLabel: {
+                                Image(systemName: "speaker.wave.1")
+                                    .foregroundColor(.blue)
+                            } maximumValueLabel: {
+                                Image(systemName: "speaker.wave.3")
+                                    .foregroundColor(.red)
+                            } onEditingChanged: { editing in
+                                if !editing {
+                                    currentSettings.soundThreshold = tempSoundThreshold
                                     sensorService.updateSettings(currentSettings)
                                 }
-                            ), in: 50...100, step: 5)
-                            Text("\(Int(currentSettings.soundThreshold)) dB")
-                                .frame(width: 50)
-                        }
-                        
-                        HStack {
-                            Image(systemName: "lightbulb")
-                            Text("Light Threshold")
-                            Spacer()
-                            Slider(value: Binding(
-                                get: { currentSettings.lightThreshold },
-                                set: { 
-                                    currentSettings.lightThreshold = $0
+                            }
+                            
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    tempSoundThreshold = 70
+                                    currentSettings.soundThreshold = tempSoundThreshold
                                     sensorService.updateSettings(currentSettings)
+                                }) {
+                                    Text("Reset to Default (70 dB)")
+                                        .font(.caption)
                                 }
-                            ), in: 500...2000, step: 100)
-                            Text("\(Int(currentSettings.lightThreshold))")
-                                .frame(width: 50)
-                        }
-                        
-                        HStack {
-                            Image(systemName: "heart")
-                            Text("Heart Rate % Increase")
-                            Spacer()
-                            Slider(value: Binding(
-                                get: { currentSettings.heartRateThreshold },
-                                set: { 
-                                    currentSettings.heartRateThreshold = $0
-                                    sensorService.updateSettings(currentSettings)
-                                }
-                            ), in: 5...50, step: 5)
-                            Text("\(Int(currentSettings.heartRateThreshold))%")
-                                .frame(width: 50)
+                                Spacer()
+                            }
                         }
                     }
                     
-                    Section(header: Text("Notifications")) {
+                    Section(header: Text("Light Threshold"), footer: Text("The light level (in lux) above which may contribute to sensory overload. Indoor lighting is typically 300-500 lux, bright offices around 1000 lux.")) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack {
+                                Text("Current: \(formatWithoutCommas(currentSettings.lightThreshold)) lux")
+                                    .font(.headline)
+                                Spacer()
+                                
+                                if sensorService.lastReading != nil && sensorService.lastReading!.lightLevel > currentSettings.lightThreshold {
+                                    Label("Exceeded", systemImage: "exclamationmark.circle")
+                                        .foregroundColor(.red)
+                                        .font(.caption)
+                                }
+                            }
+                            
+                            HStack {
+                                Text("500 lux")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                                Text("2000 lux")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Slider(
+                                value: $tempLightThreshold,
+                                in: 500...2000,
+                                step: 50
+                            ) {
+                                Text("Light Threshold")
+                            } minimumValueLabel: {
+                                Image(systemName: "lightbulb.min")
+                                    .foregroundColor(.blue)
+                            } maximumValueLabel: {
+                                Image(systemName: "lightbulb.max")
+                                    .foregroundColor(.red)
+                            } onEditingChanged: { editing in
+                                if !editing {
+                                    currentSettings.lightThreshold = tempLightThreshold
+                                    sensorService.updateSettings(currentSettings)
+                                }
+                            }
+                            
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    tempLightThreshold = 1000
+                                    currentSettings.lightThreshold = tempLightThreshold
+                                    sensorService.updateSettings(currentSettings)
+                                }) {
+                                    Text("Reset to Default (1000 lux)")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("Heart Rate Threshold"), footer: Text("The percentage increase in heart rate above your baseline that may indicate stress or discomfort. Baseline is calculated during calibration.")) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack {
+                                Text("Current: \(formatWithoutCommas(currentSettings.heartRateThreshold))% increase")
+                                    .font(.headline)
+                                Spacer()
+                                
+                                if sensorService.lastReading != nil {
+                                    let increase = ((sensorService.lastReading!.heartRate - sensorService.baselineHeartRate) / sensorService.baselineHeartRate) * 100
+                                    if increase > currentSettings.heartRateThreshold {
+                                        Label("Exceeded", systemImage: "exclamationmark.circle")
+                                            .foregroundColor(.red)
+                                            .font(.caption)
+                                    }
+                                }
+                            }
+                            
+                            HStack {
+                                Text("5%")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                                Text("50%")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Slider(
+                                value: $tempHeartRateThreshold,
+                                in: 5...50,
+                                step: 1
+                            ) {
+                                Text("Heart Rate Threshold")
+                            } minimumValueLabel: {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.blue)
+                            } maximumValueLabel: {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                            } onEditingChanged: { editing in
+                                if !editing {
+                                    currentSettings.heartRateThreshold = tempHeartRateThreshold
+                                    sensorService.updateSettings(currentSettings)
+                                }
+                            }
+                            
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    tempHeartRateThreshold = 20
+                                    currentSettings.heartRateThreshold = tempHeartRateThreshold
+                                    sensorService.updateSettings(currentSettings)
+                                }) {
+                                    Text("Reset to Default (20%)")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("Notifications"), footer: Text("When enabled, you'll receive alerts when the app detects a potential sensory overload situation.")) {
                         Toggle("Enable Notifications", isOn: Binding(
                             get: { currentSettings.notificationsEnabled },
                             set: { 
@@ -332,17 +480,23 @@ struct ContentView: View {
                         ))
                     }
                     
-                    Section(header: Text("Heart Rate Baseline")) {
+                    Section(header: Text("Heart Rate Baseline"), footer: Text("Your baseline heart rate is used to detect increases that may indicate stress or discomfort.")) {
                         HStack {
                             Text("Current Baseline")
                             Spacer()
-                            Text("\(Int(sensorService.baselineHeartRate)) BPM")
+                            Text("\(formatWithoutCommas(sensorService.baselineHeartRate)) BPM")
+                                .bold()
                         }
                         
-                        Button("Recalibrate") {
+                        Button(action: {
                             isCalibrating = true
+                        }) {
+                            Label("Recalibrate Baseline", systemImage: "heart.text.square")
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
                         }
                         .disabled(!sensorService.isConnected)
+                        .buttonStyle(.bordered)
                     }
                 }
             }
