@@ -1,8 +1,8 @@
 //
 //  SensorConnectionService.swift
-//  Sensory Overload Detector
+//  AuSense
 //
-//  Created for Sensory Overload Detector
+//  Created for AuSense
 //
 
 import Foundation

@@ -1,6 +1,6 @@
 //
 //  NotificationManager.swift
-//  Sensory Overload Detector
+//  AuSense
 //
 //  Created for Sensory Overload Detector
 //

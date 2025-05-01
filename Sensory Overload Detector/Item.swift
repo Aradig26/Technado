@@ -1,6 +1,6 @@
 //
 //  Item.swift
-//  Sensory Overload Detector
+//  AuSense
 //
 //  Created by Anshu Adiga on 4/11/25.
 //
