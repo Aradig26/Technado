@@ -12,27 +12,40 @@
 			containerPortal = 2B1864E42DA9725B008623D0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2B1864EB2DA9725B008623D0;
-			remoteInfo = "Sensory Overload Detector";
+			remoteInfo = AuSense;
 		};
 		2B1865072DA9725D008623D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2B1864E42DA9725B008623D0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2B1864EB2DA9725B008623D0;
-			remoteInfo = "Sensory Overload Detector";
+			remoteInfo = AuSense;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B1864EC2DA9725B008623D0 /* Sensory Overload Detector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensory Overload Detector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B1864FC2DA9725D008623D0 /* Sensory Overload DetectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensory Overload DetectorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B1865062DA9725D008623D0 /* Sensory Overload DetectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensory Overload DetectorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1864EC2DA9725B008623D0 /* AuSense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuSense.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1864FC2DA9725D008623D0 /* AuSenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuSenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1865062DA9725D008623D0 /* AuSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2BBB25562DCE4D0C003C15AF /* Exceptions for "AuSense" folder in "AuSense" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2B1864EB2DA9725B008623D0 /* AuSense */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2B1864EE2DA9725B008623D0 /* Sensory Overload Detector */ = {
+		2B1864EE2DA9725B008623D0 /* AuSense */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Sensory Overload Detector";
+			exceptions = (
+				2BBB25562DCE4D0C003C15AF /* Exceptions for "AuSense" folder in "AuSense" target */,
+			);
+			path = AuSense;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -65,7 +78,7 @@
 		2B1864E32DA9725B008623D0 = {
 			isa = PBXGroup;
 			children = (
-				2B1864EE2DA9725B008623D0 /* Sensory Overload Detector */,
+				2B1864EE2DA9725B008623D0 /* AuSense */,
 				2B1864ED2DA9725B008623D0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,9 +86,9 @@
 		2B1864ED2DA9725B008623D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B1864EC2DA9725B008623D0 /* Sensory Overload Detector.app */,
-				2B1864FC2DA9725D008623D0 /* Sensory Overload DetectorTests.xctest */,
-				2B1865062DA9725D008623D0 /* Sensory Overload DetectorUITests.xctest */,
+				2B1864EC2DA9725B008623D0 /* AuSense.app */,
+				2B1864FC2DA9725D008623D0 /* AuSenseTests.xctest */,
+				2B1865062DA9725D008623D0 /* AuSenseUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,9 +96,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B1864EB2DA9725B008623D0 /* Sensory Overload Detector */ = {
+		2B1864EB2DA9725B008623D0 /* AuSense */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B1865102DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload Detector" */;
+			buildConfigurationList = 2B1865102DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSense" */;
 			buildPhases = (
 				2B1864E82DA9725B008623D0 /* Sources */,
 				2B1864E92DA9725B008623D0 /* Frameworks */,
@@ -96,18 +109,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2B1864EE2DA9725B008623D0 /* Sensory Overload Detector */,
+				2B1864EE2DA9725B008623D0 /* AuSense */,
 			);
-			name = "Sensory Overload Detector";
+			name = AuSense;
 			packageProductDependencies = (
 			);
-			productName = "Sensory Overload Detector";
-			productReference = 2B1864EC2DA9725B008623D0 /* Sensory Overload Detector.app */;
+			productName = AuSense;
+			productReference = 2B1864EC2DA9725B008623D0 /* AuSense.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2B1864FB2DA9725D008623D0 /* Sensory Overload DetectorTests */ = {
+		2B1864FB2DA9725D008623D0 /* AuSenseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B1865132DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload DetectorTests" */;
+			buildConfigurationList = 2B1865132DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSenseTests" */;
 			buildPhases = (
 				2B1864F82DA9725D008623D0 /* Sources */,
 				2B1864F92DA9725D008623D0 /* Frameworks */,
@@ -118,16 +131,16 @@
 			dependencies = (
 				2B1864FE2DA9725D008623D0 /* PBXTargetDependency */,
 			);
-			name = "Sensory Overload DetectorTests";
+			name = AuSenseTests;
 			packageProductDependencies = (
 			);
-			productName = "Sensory Overload DetectorTests";
-			productReference = 2B1864FC2DA9725D008623D0 /* Sensory Overload DetectorTests.xctest */;
+			productName = AuSenseTests;
+			productReference = 2B1864FC2DA9725D008623D0 /* AuSenseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2B1865052DA9725D008623D0 /* Sensory Overload DetectorUITests */ = {
+		2B1865052DA9725D008623D0 /* AuSenseUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B1865162DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload DetectorUITests" */;
+			buildConfigurationList = 2B1865162DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSenseUITests" */;
 			buildPhases = (
 				2B1865022DA9725D008623D0 /* Sources */,
 				2B1865032DA9725D008623D0 /* Frameworks */,
@@ -138,11 +151,11 @@
 			dependencies = (
 				2B1865082DA9725D008623D0 /* PBXTargetDependency */,
 			);
-			name = "Sensory Overload DetectorUITests";
+			name = AuSenseUITests;
 			packageProductDependencies = (
 			);
-			productName = "Sensory Overload DetectorUITests";
-			productReference = 2B1865062DA9725D008623D0 /* Sensory Overload DetectorUITests.xctest */;
+			productName = AuSenseUITests;
+			productReference = 2B1865062DA9725D008623D0 /* AuSenseUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B1864E72DA9725B008623D0 /* Build configuration list for PBXProject "Sensory Overload Detector" */;
+			buildConfigurationList = 2B1864E72DA9725B008623D0 /* Build configuration list for PBXProject "AuSense" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -182,9 +195,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B1864EB2DA9725B008623D0 /* Sensory Overload Detector */,
-				2B1864FB2DA9725D008623D0 /* Sensory Overload DetectorTests */,
-				2B1865052DA9725D008623D0 /* Sensory Overload DetectorUITests */,
+				2B1864EB2DA9725B008623D0 /* AuSense */,
+				2B1864FB2DA9725D008623D0 /* AuSenseTests */,
+				2B1865052DA9725D008623D0 /* AuSenseUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,12 +253,12 @@
 /* Begin PBXTargetDependency section */
 		2B1864FE2DA9725D008623D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2B1864EB2DA9725B008623D0 /* Sensory Overload Detector */;
+			target = 2B1864EB2DA9725B008623D0 /* AuSense */;
 			targetProxy = 2B1864FD2DA9725D008623D0 /* PBXContainerItemProxy */;
 		};
 		2B1865082DA9725D008623D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2B1864EB2DA9725B008623D0 /* Sensory Overload Detector */;
+			target = 2B1864EB2DA9725B008623D0 /* AuSense */;
 			targetProxy = 2B1865072DA9725D008623D0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -370,13 +383,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Sensory Overload Detector/Sensory_Overload_Detector.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_ENTITLEMENTS = AuSense/AuSense.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 273CJ3Y7MJ;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AuSense/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AuSense;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -389,17 +405,18 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technado.AuSense;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Debug;
@@ -409,13 +426,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Sensory Overload Detector/Sensory_Overload_Detector.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_ENTITLEMENTS = AuSense/AuSense.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 273CJ3Y7MJ;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AuSense/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AuSense;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -428,17 +448,18 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.technado.AuSense;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Release;
@@ -460,7 +481,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensory Overload Detector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sensory Overload Detector";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuSense.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AuSense";
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Debug;
@@ -482,7 +503,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensory Overload Detector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sensory Overload Detector";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuSense.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AuSense";
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Release;
@@ -503,7 +524,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = "Sensory Overload Detector";
+				TEST_TARGET_NAME = AuSense;
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Debug;
@@ -524,7 +545,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = "Sensory Overload Detector";
+				TEST_TARGET_NAME = AuSense;
 				XROS_DEPLOYMENT_TARGET = 2.4;
 			};
 			name = Release;
@@ -532,7 +553,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B1864E72DA9725B008623D0 /* Build configuration list for PBXProject "Sensory Overload Detector" */ = {
+		2B1864E72DA9725B008623D0 /* Build configuration list for PBXProject "AuSense" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B18650E2DA9725D008623D0 /* Debug */,
@@ -541,7 +562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B1865102DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload Detector" */ = {
+		2B1865102DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSense" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B1865112DA9725D008623D0 /* Debug */,
@@ -550,7 +571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B1865132DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload DetectorTests" */ = {
+		2B1865132DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSenseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B1865142DA9725D008623D0 /* Debug */,
@@ -559,7 +580,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B1865162DA9725D008623D0 /* Build configuration list for PBXNativeTarget "Sensory Overload DetectorUITests" */ = {
+		2B1865162DA9725D008623D0 /* Build configuration list for PBXNativeTarget "AuSenseUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B1865172DA9725D008623D0 /* Debug */,

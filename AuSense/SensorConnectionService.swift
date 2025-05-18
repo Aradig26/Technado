@@ -1,10 +1,3 @@
-//
-//  SensorConnectionService.swift
-//  AuSense
-//
-//  Created for AuSense
-//
-
 import Foundation
 import CoreBluetooth
 import UserNotifications
@@ -33,7 +26,7 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     // MARK: - Initialization
     override init() {
         super.init()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        centralManager = CBCentralManager(delegate: self, queue: .main)
         setupNotifications()
     }
     
@@ -43,11 +36,12 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     
     // MARK: - Public Methods
     func startScanning() {
-        guard centralManager.state == .poweredOn else { return }
-        
+        print(centralManager.state == .poweredOn)
         isScanning = true
         devices.removeAll()
-        centralManager.scanForPeripherals(withServices: [espServiceUUID], options: nil)
+        if centralManager.state == .poweredOn {
+          centralManager.scanForPeripherals(withServices: [espServiceUUID], options: nil)
+        }
     }
     
     func stopScanning() {
@@ -70,13 +64,19 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     
     // MARK: - CBCentralManagerDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+      DispatchQueue.main.async {
         if central.state == .poweredOn {
-            print("Bluetooth is powered on")
+          if self.isScanning {
+            central.scanForPeripherals(withServices: [self.espServiceUUID], options: nil)
+          }
         } else {
-            print("Bluetooth is not available: \(central.state.rawValue)")
-            isConnected = false
+          // reset your flags
+          self.isScanning = false
+          self.isConnected = false
         }
+      }
     }
+
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if !devices.contains(peripheral) {
@@ -85,14 +85,22 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        isConnected = true
-        peripheral.discoverServices([espServiceUUID])
+      central.stopScan()
+      peripheral.discoverServices([espServiceUUID])
+      DispatchQueue.main.async {
+        self.isScanning = false
+        self.isConnected = true
+      }
     }
-    
+
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        isConnected = false
-        self.peripheral = nil
+      DispatchQueue.main.async {
+        self.isConnected = false
+        self.isScanning = false
+      }
+      self.peripheral = nil
     }
+
     
     // MARK: - CBPeripheralDelegate
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -115,7 +123,7 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        guard let data = characteristic.value, let settings = userSettings else { return }
+        guard let data = characteristic.value, let _ = userSettings else { return }
         
         // Create a new reading if we don't have one
         if lastReading == nil {
@@ -176,4 +184,4 @@ class SensorConnectionService: NSObject, ObservableObject, CBCentralManagerDeleg
     func calibrateHeartRate(with rate: Double) {
         self.baselineHeartRate = rate
     }
-} 
+}
