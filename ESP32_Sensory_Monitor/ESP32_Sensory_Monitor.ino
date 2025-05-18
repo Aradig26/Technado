@@ -47,7 +47,7 @@ unsigned long lastBle = 0;
 bool wasConnected = false;
 
 // SOUND constants
-const int SOUND_PIN = 15;
+const int SOUND_PIN = 33;
 const int SOUND_SAMPLES = 512;
 const float VREF = 3.3f;
 const float ADC_MAX = 4095.0f;
@@ -63,15 +63,15 @@ const float V_WEIGHTS[8] = {
   0.0012, 0.0230, 0.1390, 0.5030,
   0.9950, 0.7570, 0.2650, 0.0170
 };
-float calM = 1.2134;
+float calM = 1.1734;
 float calB = 13.5487;
 
 
 // Kalman filter vars (tune Q and R to change smoothness)
-float kfQ = 0.02;  // process noise covariance
-float kfR = 0.5;   // measurement noise covariance
+float kfQ = 0.05;  // process noise covariance
+float kfR = 0.3;   // measurement noise covariance
 float kfP = 1.0;   // estimation error covariance, start at 1
-float kfK = 1.5;   // Kalman gain
+float kfK = 1.0;   // Kalman gain
 float kfX = 0.0;   // filtered value (init to zero or first reading)
 
 
